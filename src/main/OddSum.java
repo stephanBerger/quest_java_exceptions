@@ -2,43 +2,52 @@ import java.util.ArrayList;
 
 public class OddSum {
 
-    public static void main(String[] args) {
-        run(args, false);
-    }
+	public static void main(String[] args) {
+		OddSum.run(args, false);
+	}
 
-    public static int run(String[] args, boolean test) {
+	public static int run(String[] args, boolean test) {
 
-        ArrayList<Integer> listInt = new ArrayList<>();
-        int res;
-        if (!test) {
-            System.out.println("Elements' list :");
-            for (String v : args)
-                System.out.print(" " + v);
-            System.out.println();
-        }
-        for (int i = 0; i < args.length; i++) {
-            listInt.add(Integer.parseInt(args[i]));
-        }
+		ArrayList<Integer> listInt = new ArrayList<>();
+		int res;
+		if (!test) {
+			System.out.println("Elements' list :");
+			for (String v : args) {
+				System.out.print(" " + v);
+			}
+			System.out.println();
+		}
+		for (String arg : args) {
+			try {
+				listInt.add(Integer.parseInt(arg));
 
-        res = sum(listInt);
-        if (test) {
-            return res;
-        }
+			} catch (NumberFormatException e) {
+				// TODO: handle exception
+				System.out.println("Il y a une erreur " + e.getMessage());
+				return -1;
+			}
 
-        System.out.println("Sum of odd elements : " + res);
-        System.out.println("END!");
+		}
 
-        return 0;
-    }
+		res = OddSum.sum(listInt);
+		if (test) {
+			return res;
+		}
 
-    public static int sum(ArrayList<Integer> listInt) {
+		System.out.println("Sum of odd elements : " + res);
+		System.out.println("END!");
 
-        int result = 0;
-        for (int value : listInt) {
-            if (value % 2 != 0) {
-                result += value;
-            }
-        }
-        return result;
-    }
+		return 0;
+	}
+
+	public static int sum(ArrayList<Integer> listInt) {
+
+		int result = 0;
+		for (int value : listInt) {
+			if (value % 2 != 0) {
+				result += value;
+			}
+		}
+		return result;
+	}
 }
